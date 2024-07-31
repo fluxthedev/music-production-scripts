@@ -75,8 +75,8 @@ melody_notes = [
     {'pitch': 64, 'duration': 1},  # E (quarter)
 ]
 
-for note in melody_notes:
-    melody_midi_file.addNote(melody_track, melody_channel, note['pitch'], note['duration'])
+for i, note in enumerate(melody_notes):
+    melody_midi_file.addNote(melody_track, melody_channel, note['pitch'], i, note['duration'], 100)
 
 # Add harmony (chord progression)
 harmony_chords = [
@@ -91,15 +91,15 @@ harmony_chords = [
     # ... add more harmony chords here ...
 ]
 
-for chord in harmony_chords:
+for i, chord in enumerate(harmony_chords):
     if chord['quality'] == '7':
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'], 1)
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 4, 1)
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 7, 1)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'], i, 1, 100)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 4, i, 1, 100)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 7, i, 1, 100)
     elif chord['quality'] == 'maj':
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'], 1)
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 4, 1)
-        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 7, 1)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'], i, 1, 100)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 4, i, 1, 100)
+        harmony_midi_file.addNote(harmony_track, harmony_channel, chord['root'] + 7, i, 1, 100)
 
 # Add bass line
 bass_notes = [
@@ -114,8 +114,8 @@ bass_notes = [
     # ... add more bass notes here ...
 ]
 
-for note in bass_notes:
-    bass_midi_file.addNote(bass_track, bass_channel, note['pitch'], note['duration'])
+for i, note in enumerate(bass_notes):
+    bass_midi_file.addNote(bass_track, bass_channel, note['pitch'], i, note['duration'], 100)
 
 # Save MIDI files
 with open('melody.mid', 'wb') as output_file:
